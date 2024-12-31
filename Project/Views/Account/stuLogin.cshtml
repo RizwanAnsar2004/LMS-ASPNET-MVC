@@ -1,0 +1,146 @@
+﻿@model Project.Models.MyLogin
+
+@{
+    ViewBag.Title = "Student Login";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-header {
+            background-color: #4267b2;
+            color: #fff;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            border-radius: 10px 10px 0 0;
+        }
+
+            .form-header h2 {
+                margin: 0;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            height: 40px;
+            
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
+
+        .btn-primary {
+            background-color: #4267b2;
+            border-color: #4267b2;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 10px;
+        }
+
+            .btn-primary:hover {
+                background-color: #365899;
+                border-color: #365899;
+            }
+            #pass{
+                width:350px;
+            }
+        .invalid-feedback {
+            color: #dc3545;
+            font-size: 14px;
+        }
+        #UserPassword{
+            margin-left:40px;
+            width:350px;
+        }
+        #StudentID{
+            margin-left:40px;
+        }
+        body {
+            background-image: url('https://www.google.com/imgres?q=bahria%20university%20karachi%20campus&imgurl=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D724533613052151&imgrefurl=https%3A%2F%2Fwww.facebook.com%2Fofficialbukc%2F&docid=FeuRi3D3q2Je9M&tbnid=C83THcaPfpphxM&vet=12ahUKEwj9os_N8NqGAxWuSfEDHdvxCqcQM3oECBgQAA..i&w=3364&h=1245&hcb=2&ved=2ahUKEwj9os_N8NqGAxWuSfEDHdvxCqcQM3oECBgQAA');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <h2>Student Login</h2>
+        </div>
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "needs-validation", @novalidate = "novalidate" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StudentID,"Student Id", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.StudentID, new { htmlAttributes = new { @class = "form-control", @required = "required", @placeholder = "Student ID" } })
+                    <div class="invalid-feedback">Please enter your Student ID.</div>
+                    @Html.ValidationMessageFor(model => model.StudentID, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserPassword, "Password", htmlAttributes: new { @class = "control-label" })
+                    <br>
+                    @Html.PasswordFor(model => model.UserPassword, new { htmlAttributes = new {@id="pass", @class = "form-control pass", @required = "required", @placeholder = "Password" } })
+                    <div class="invalid-feedback">Please enter your password.</div>
+                    @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        }
+    </div>
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</body>
+</html>

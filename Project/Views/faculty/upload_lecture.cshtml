@@ -1,0 +1,194 @@
+﻿@model Project.Models.course
+
+@{
+    ViewBag.Title = "upload_lecture";
+    Layout = "~/Views/Shared/faculty_layout.cshtml";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <style>
+        .upload-lecture-form-page {
+            width: 80vw;
+            height: 93vh;
+            background-color: rgb(255, 255, 240);
+            padding: 1px;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+            border-bottom-left-radius: 40px;
+            border: 3px solid green;
+        }
+
+            .upload-lecture-form-page .nav-of-page {
+                margin-top: 30px;
+                background-color: transparent;
+                width: 70%;
+                height: 6%;
+                margin-left: 7.5%;
+                display: flex;
+                justify-content: space-between;
+                padding-left: 50px;
+                padding-right: 100px;
+                align-items: center;
+                color: green;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                font-family: 'Anek Devanagari', sans-serif;
+                border-bottom-left-radius: 40px;
+                border: 3px solid green;
+            }
+
+        .upload-lecture-form-page-main {
+            margin-top: 2%;
+            margin-left: 7.5%;
+            background-color: transparent;
+            width: 80%;
+            height: 75%;
+            padding-top: 2%;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+            border-bottom-left-radius: 40px;
+            border: 3px solid green;
+            padding-left: 1%;
+        }
+
+            .upload-lecture-form-page-main form label {
+                font-size: 30px;
+                font-family: 'Anek Devanagari', sans-serif;
+                font-weight: bold;
+                margin-left: 30px;
+                color: green;
+            }
+
+            .upload-lecture-form-page-main form #lecture-name {
+                height: 40px;
+                width: 300px;
+                font-size: 30px;
+                margin-left: 30px;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+            }
+
+            .upload-lecture-form-page-main form #sem {
+                margin-left: 100px;
+            }
+
+            .upload-lecture-form-page-main form #semester {
+                width: 100px;
+                height: 50px;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                font-size: 20px;
+                overflow: hidden;
+            }
+
+            .upload-lecture-form-page-main form #file {
+                margin-top: 100px;
+                top: 100px;
+            }
+
+            .upload-lecture-form-page-main form #file-upload {
+                padding: 50px;
+                font-size: 20px;
+            }
+
+            .upload-lecture-form-page-main form #upload {
+                margin-top: 1%;
+                margin-left: 43%;
+                padding: 15px;
+                padding-left: 50px;
+                padding-right: 50px;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                font-size: 20px;
+                color: green;
+            }
+
+                .upload-lecture-form-page-main form #upload:hover {
+                    background-color: green;
+                    color: white;
+                    border: 5px solid green;
+                }
+
+            .upload-lecture-form-page-main form #logo {
+                width: 35px;
+                height: 35px;
+                position: relative;
+                left: 47%;
+                top: 10px;
+            }
+
+        .image {
+            display: flex;
+            justify-content: center;
+            padding-top: 2.5%;
+        }
+
+            .image img {
+                width: 300px;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+            }
+    </style>
+    <div class="upload-lecture-form-page">
+        <div class="nav-of-page">
+            <h1>Upload Lecture</h1>
+        </div>
+        <div class="upload-lecture-form-page-main">
+            <form action="@Url.Action("uploadLecture", "faculty")" method="post" enctype="multipart/form-data">
+                <label for="lecture-name">Enter Lecture Name:  </label>
+                @Html.EditorFor(model=> model.CourseName, new { htmlAttributes = new { @class = "form-control", @id = "lecture-name" } })
+                <br><br>
+                <label for="lecture-name">Enter Lecture Description:  </label>
+                @Html.EditorFor(model => model.CourseDescription, new { htmlAttributes = new { @class = "form-control", @id = "lecture-name", } })
+                <br><br>
+                @*@Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "form-control", @id = "lecture-name" } })*@
+    
+                @*<label for="semester" id="sem">Choose Semester:</label>
+
+                    <select name="" id="semester" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>*@
+
+                <div class="form-file">
+                    <label for="file-upload" id="file">Choose files (.docx, .zip, .pdf):</label>
+                    <input type="file" id="file-upload" name="file-upload" accept=".docx,.zip,.pdf" multiple required>
+                </div>
+
+                <img src="@Url.Content("~/Content/images/save-green-com.png")" alt="" id="logo"><input type="submit" id="upload" value="Upload">
+
+            </form>
+            <div class="image">
+                <img src="@Url.Content("~/Content/images/saveimggif.gif")" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

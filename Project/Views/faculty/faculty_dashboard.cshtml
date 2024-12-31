@@ -1,0 +1,257 @@
+﻿@{
+    ViewBag.Title = "faculty_dashboard";
+    Layout = "~/Views/Shared/faculty_layout.cshtml";
+
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        .dashboard {
+            /* background-color: red; */
+            width: 80vw;
+            height: 93vh;
+            display: flex;
+            border-radius: 5%;
+        }
+
+            .dashboard .dashboard-main-section {
+                width: 56vw;
+                background-color: rgb(255, 255, 240);
+                border-top-left-radius: 5%;
+                border-bottom-left-radius: 5%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border: 3px solid black;
+            }
+
+                .dashboard .dashboard-main-section .dashboard-main-section-welcome {
+                    display: flex;
+                    height: 20vh;
+                    background-color: rgb(255, 255, 240);
+                    margin-top: 5vh;
+                    width: 80%;
+                    color: #A1DD70;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-top-left-radius: 40px;
+                    border-top-right-radius: 40px;
+                    border-bottom-right-radius: 40px;
+                    border-bottom-left-radius: 40px;
+                    border: 3px solid green;
+                    padding-left: 30px;
+                    padding-right: 15px;
+                }
+
+
+                    .dashboard .dashboard-main-section .dashboard-main-section-welcome img {
+                        width: 200px;
+                    }
+
+                .dashboard .dashboard-main-section section {
+                    padding: 10px;
+                    width: 75%;
+                    margin-top: 5vh;
+                    background-color: white;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    /* gap: 5%; */
+                    color: green;
+                    padding-left: 5%;
+                    padding-right: 10%;
+                    border-top-left-radius: 40px;
+                    border-top-right-radius: 40px;
+                    border-bottom-right-radius: 40px;
+                    border-bottom-left-radius: 40px;
+                    border: 3px solid green;
+                }
+
+                    .dashboard .dashboard-main-section section #Teacher {
+                        padding: 20px;
+                        border-radius: 35%;
+                        background-color: rgb(2,7,91);
+                        color: white;
+                        border: none;
+                        font-size: large;
+                    }
+
+                        .dashboard .dashboard-main-section section #Teacher option {
+                            background-color: rgb(2,7,91);
+                            padding: 15px;
+                        }
+
+                            .dashboard .dashboard-main-section section #Teacher option:checked {
+                                background-color: whitesmoke;
+                                color: #A1DD70;
+                            }
+
+                .dashboard .dashboard-main-section .schedule {
+                    margin-top: 30px;
+                    width: 90%;
+                    background-color: transparent;
+                    height: 43vh;
+                    color: #A1DD70;
+                    overflow-y: scroll;
+                    border-top-left-radius: 40px;
+                    border-top-right-radius: 40px;
+                    border-bottom-right-radius: 40px;
+                    border-bottom-left-radius: 40px;
+                    border: 3px solid green;
+                    /* scrollbar-color: ; */
+                }
+
+            .dashboard .dashboard-pf-section {
+                width: 24vw;
+                background-color: rgb(255, 255, 240);
+            }
+
+                .dashboard .dashboard-pf-section .dashboard-pfp-section {
+                    width: 99%;
+                    /* border-top-left-radius: 5%; */
+                    border-top-right-radius: 5%;
+                    background-color: rgb(255, 255, 240);
+                    color: #A1DD70;
+                    height: 35%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: 3px green solid;
+                }
+
+                    .dashboard .dashboard-pf-section .dashboard-pfp-section #pfp-of-user {
+                        width: 250px;
+                        border-radius: 50%;
+                    }
+
+                .dashboard .dashboard-pf-section .dashboard-pf-details {
+                    height: 64%;
+                    background-color: rgb(255, 255, 240);
+                    display: flex;
+                    color: green;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    font-size: 20px;
+                    border: 3px solid green;
+                    /* border-bottom-left-radius: 5%; */
+                    border-bottom-right-radius: 5%;
+                }
+
+        .dashboard-pf-details p {
+            line-height: 2.5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .schedule-class {
+            height: 10vh;
+            border-bottom: 3px solid green;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 6%;
+            padding-right: 6%;
+        }
+
+            .schedule-class:hover {
+                background-color: #A1DD70;
+                color: white;
+            }
+    </style>
+    <div class="dashboard">
+        <div class="dashboard-main-section">
+            <div class="dashboard-main-section-welcome">
+                <h1>
+                    Welcome to Bahria University <br>
+                    Learning Management System
+                </h1>
+                <img src="https://cdn1.iconfinder.com/data/icons/education-vol-2-1/64/091-512.png" alt="">
+            </div>
+            <section>
+                <h1>Schedule Of Classes:</h1>
+                <!-- @* -->
+                    <!-- <select name="Teacher" id="Teacher">
+                    <option value="faisal">Sir Faisal</option>
+                    <option value="teacher">Sir Faiz</option>
+                    <option value="teacher">Mobeen Nazr</option>
+
+                </select> -->
+                <!-- *@ -->
+            </section>
+            <div class="schedule" id="ScheduleContainer" runat="server">
+
+                <!-- @*@foreach (var schedule in Model)*@
+                @*  *@{ -->
+                <div class="schedule-class">
+                    <div class="schedule-class-text">
+                        <!-- @* -->
+                        <h2>@schedule.ClassName</h2>
+                        <!-- *@ -->
+                    </div>
+                    <div class="schedule-class-time">
+                        <!-- @* -->
+                        <h2>@schedule.ClassTime</h2>
+                        <!-- *@ -->
+                    </div>
+                </div>
+                <!-- @*  *@} -->
+                <!-- add schedule here -->
+            </div>
+        </div>
+        <div class="dashboard-pf-section">
+            <div class="dashboard-pfp-section">
+                <img src="@Url.Content("~/Content/images/teacher.png")" id="pfp-of-user" alt="">
+            </div>
+            <div class="dashboard-pf-details">
+                <p>
+                    <b>Faculty ID:</b>
+                    @ViewData["id"]
+
+                </p>
+                <p>
+                    <b>Faculty Username:</b>
+                    @ViewData["name"]
+
+                </p>
+                <p>
+                    <b>Faculty Email:</b>
+                    @ViewData["email"]
+
+                </p>
+                <p>
+                    <b>Faculty Password:</b>
+                    @ViewData["password"]
+
+                </p>
+                <p>
+                    <b>Faculty Phone:</b>
+                    @ViewData["phone"]
+
+                </p>
+                <p>
+                    <b>Faculty Address:</b>
+                    @ViewData["address"]
+
+                </p>
+                <p>
+                    <b>Faculty Date Of Birth:</b>
+                    @ViewData["dob"]
+
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

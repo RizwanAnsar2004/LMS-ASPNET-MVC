@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "Student_layout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        .bodyforsection {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: row;
+        }
+
+            .bodyforsection .sidebar {
+                width: 20%;
+                background-color: rgb(255, 255, 240);
+                border-radius: 3.5%;
+                position: fixed;
+                border-left: 2px black solid;
+                border-right: 2px black solid;
+                height: 100vh;
+            }
+
+                .bodyforsection .sidebar .sidebarlogo {
+                    width: 100%;
+                    height: 28%;
+                    border-top-left-radius: 5%;
+                    border-top-right-radius: 5%;
+                    background-color: transparent;
+                    border-top: 2px black solid;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                    .bodyforsection .sidebar .sidebarlogo img {
+                        padding-left: 20px;
+                        width: 350px;
+                        /* height: fit-content; */
+                    }
+
+                .bodyforsection .sidebar .sidebarlist {
+                    margin-top: 10px;
+                    width: 100%;
+                    overflow: hidden;
+                }
+
+                    .bodyforsection .sidebar .sidebarlist .listitem {
+                        padding: 5%;
+                        width: 100%;
+                        background-color: rgb(255, 255, 240);
+                        border: 2px rgba(255, 255, 255, 0.62);
+                        transition: 0.2s ease-in-out;
+                        text-align: center;
+                        font-size: 20px;
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                        font-weight: 500;
+                    }
+
+                        .bodyforsection .sidebar .sidebarlist .listitem:hover {
+                            background-color: #b9b9b9;
+                        }
+
+        .maincontent {
+            margin-left: 20.25%;
+            width: 80%;
+            /* background-color: aqua; */
+            height: 100%;
+            /* border-top-left-radius:5% ; */
+        }
+
+        .maincontent1 {
+            border-top-left-radius: 20px;
+            width: 100%;
+            height: 7%;
+            background-color: rgb(255, 255, 240);
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            border-bottom: 2px black solid;
+            ;
+        }
+
+        .maincontent2 {
+            background-color: rgb(255, 255, 240);
+        }
+    </style>
+    <div class="bodyforsection">
+        <div class="sidebar">
+            <div class="sidebarlogo">
+                <img src="https://bahria.edu.pk/bukc/wp-content/themes/buhq_theme/images/logo/logo5.png" alt="bahria logo will come here">
+            </div>
+            <div class="sidebarlist">
+                <!-- <ul>
+                    <li><div class="listitem">lorem</div></li>
+                    <li><div class="listitem">lorem</div></li>
+                    <li><div class="listitem">lorem</div></li>
+                    <li><div class="listitem">lorem</div></li>
+                    <li><div class="listitem">lorem</div></li>
+                    <li><div class="listitem">lorem</div></li>
+                </ul> -->
+                <a href="@Url.Action("stu_dashboard","Account")">
+                    <button class="listitem">Dashboard</button>
+                    </a>
+                    <a href="@Url.Action("stu_lectures","Stu")">
+                        <button class="listitem">Lectures</button>
+                    </a>
+                    <a href="@Url.Action("Stu_assignment","Account")">
+                        <button class="listitem">Assignments</button>
+                    </a>
+                    <a href="@Url.Action("stu_appointment","Stu")">
+                        <button class="listitem">Appointment</button>
+                    </a>    
+                <button class="listitem">Logout</button>
+
+
+</div>
+        </div>
+        <div class="maincontent">
+            <div class="maincontent1">
+                 @DateTime.Now.Date
+            </div>
+            <div class="maincontent2">
+                @RenderBody()
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

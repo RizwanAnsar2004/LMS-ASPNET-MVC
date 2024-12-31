@@ -1,0 +1,209 @@
+﻿@model IEnumerable<Project.Models.assignment1>
+
+@{
+    ViewBag.Title = "Stu_assignment";
+    Layout = "~/Views/Shared/Student_layout.cshtml";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    @*<link rel="stylesheet" href="style.css">*@
+</head>
+<body>
+    <style>
+            .assignment-dashboard-main {
+                width: 80vw;
+                height: 93vh;
+                background-color: rgb(255, 255, 240);
+                padding-top: 1px;
+                overflow-y: scroll;
+                flex-wrap: wrap;
+                display: flex;
+            }
+
+                .assignment-dashboard-main .nav-of-page {
+                    margin-top: 30px;
+                    background-color: rgb(255, 255, 240);
+                    width: 75%;
+                    margin-left: 4%;
+                    display: flex;
+                    justify-content: space-between;
+                    padding-left: 50px;
+                    padding-right: 100px;
+                    align-items: center;
+                    border-top-left-radius: 40px;
+                    border-top-right-radius: 40px;
+                    border-bottom-right-radius: 40px;
+                    border-bottom-left-radius: 40px;
+                    border: 3px solid black;
+                }
+
+            .button-sec {
+                position: relative;
+                bottom: 35px;
+                display: flex;
+                justify-content: center;
+                gap: 20%;
+            }
+
+            .buttons {
+                padding: 10px;
+                padding-left: 20px;
+                padding-right: 20px;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                border: 2px solid black;
+            }
+
+                .buttons:hover {
+                    background-color: crimson;
+                    color: black;
+                }
+
+            .assignment-dashboard-main .nav-of-page section {
+                display: flex;
+            }
+
+            .details-of-ass {
+                margin-left: 6%;
+                /* background-color: pink; */
+                position: relative;
+                bottom: 30px;
+                right: 20px;
+            }
+
+            .details-of-ass-sec {
+                font-size: 20px;
+                position: relative;
+                bottom: 30px;
+                color: black;
+                /* background-color: pink; */
+            }
+
+            .assignment-dashboard-main .nav-of-page section h1 {
+                margin-right: 20px;
+            }
+
+            .assignment-dashboard-main .nav-of-page section select {
+                height: 30px;
+                width: 150px;
+                border: 5%;
+                margin-top: 17px;
+            }
+
+            .assignment-dashboard-main .assignment-card {
+                margin-top: 30px; /* Example margin top */
+                margin-left: 60px;
+                background-color: rgb(235, 235, 232);
+                width: 40%;
+                height: 34%;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                border: 3px solid black;
+            }
+
+                .assignment-dashboard-main .assignment-card #dlogo {
+                    /* left: 300px;
+        top: 10px; */
+                    width: 61px;
+                    height: 61px;
+                    /* position: relative; */
+                    background: transparent;
+                    border-radius: 60%;
+                    transition: 0.5ms ease-in-out;
+                }
+
+                .assignment-dashboard-main .assignment-card .nav-of-card {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 10px;
+                    margin-left: 10px;
+                    margin-right: 10px;
+                }
+
+                .assignment-dashboard-main .assignment-card #dlogo:hover {
+                    background-color: rgb(255, 0, 89);
+                }
+
+                .assignment-dashboard-main .assignment-card #download {
+                    width: 45px;
+                    position: relative;
+                    /* top: 10px; */
+                    bottom: 2px;
+                    right: 10px;
+                    border: 3px solid black;
+                    padding: 5px;
+                    border-radius: 50%;
+                }
+
+            .card-details {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                font-size: 20px;
+                color: black;
+            }
+
+                .card-details p {
+                    margin-left: 10px;
+                }
+
+            #info {
+                width: 30px
+            }
+    </style>
+    <div class="assignment-dashboard-main">
+
+        <div class="nav-of-page">
+            <h1>Assignments</h1>
+            @*<section>
+                <H1>Subject:</H1>
+                <select name="Teacher" id="Teacher">
+                    <option value="faisal">Sir Faisal</option>
+                    <option value="teacher">Sir Faiz</option>
+                    <option value="teacher">Mobeen Nazr</option>
+                </select>
+            </section>*@
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="assignment-card">
+                <div class="nav-of-card">
+                    <h1>@Html.DisplayFor(modelItem => item.AssignmentTitle)</h1>
+                    <button id="dlogo">
+                    <a href="@item.AssignmentFilePath" download>
+                        <img src="@Url.Content("~/Content/images/download.png")" alt="download" id="download">
+                        </a>
+                    </button>
+                </div>
+
+
+                <section class="details-of-ass">
+                    <section>
+                        <section class="card-details"><img src="@Url.Content("~/Content/images/info.png")" alt="" id="info"><p>Info</p></section>
+                        <section class="details-of-ass-sec">
+                            <p>@Html.DisplayFor(modelItem => item.AssignmentDescription)</p>
+                            <p>MaxMarks: @Html.DisplayFor(modelItem => item.MaxPoints)</p>
+                            <p>DueDate: @Html.DisplayFor(modelItem => item.DueDate)</p>
+
+                        </section>
+                    </section>
+                    <!-- <section class="button-sec">
+                    <button class="buttons">Submit</button>
+                    <button class="buttons">Cancel</button>
+                </section> -->
+                </section>
+            </div>}
+    </div>
+
+</body>
+</html>

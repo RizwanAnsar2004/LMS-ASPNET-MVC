@@ -1,0 +1,285 @@
+﻿
+@{
+    ViewBag.Title = "admin_dashboard";
+    Layout = "~/Views/Shared/admin_layout.cshtml";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        .dashboard {
+            /* background-color: red; */
+            width: 80vw;
+            height: 93vh;
+            display: flex;
+            border-radius: 5%;
+        }
+
+            .dashboard .dashboard-main-section {
+                width: 56vw;
+                background-color: rgb(255, 255, 240);
+                border-top-left-radius: 5%;
+                border-bottom-left-radius: 5%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border: 3px solid #6264A7;
+            }
+
+                .dashboard .dashboard-main-section .dashboard-main-section-welcome {
+                    display: flex;
+                    height: 30vh;
+                    background-color: rgb(255, 255, 240);
+                    margin-top: 5vh;
+                    width: 80%;
+                    color: #6264A7;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-top-left-radius: 40px;
+                    border-top-right-radius: 40px;
+                    border-bottom-right-radius: 40px;
+                    border-bottom-left-radius: 40px;
+                    border: 3px solid #6264A7;
+                    padding-left: 30px;
+                    padding-right: 15px;
+                }
+
+
+                    .dashboard .dashboard-main-section .dashboard-main-section-welcome img {
+                        width: 200px;
+                    }
+
+                .dashboard .dashboard-main-section section {
+                    padding: 10px;
+                    width: 75%;
+                    margin-top: 5vh;
+                    background-color: white;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    /* gap: 5%; */
+                    color: #6264A7;
+                    padding-left: 5%;
+                    padding-right: 10%;
+                    border-top-left-radius: 40px;
+                    border-top-right-radius: 40px;
+                    border-bottom-right-radius: 40px;
+                    border-bottom-left-radius: 40px;
+                    border: 3px solid #6264A7;
+                }
+
+                    .dashboard .dashboard-main-section section #Teacher {
+                        padding: 20px;
+                        border-radius: 35%;
+                        background-color: rgb(2,7,91);
+                        color: white;
+                        border: none;
+                        font-size: large;
+                    }
+
+                        .dashboard .dashboard-main-section section #Teacher option {
+                            background-color: rgb(2,7,91);
+                            padding: 15px;
+                        }
+
+                            .dashboard .dashboard-main-section section #Teacher option:checked {
+                                background-color: whitesmoke;
+                                color: #6264A7;
+                                ;
+                            }
+
+                .dashboard .dashboard-main-section .schedule {
+                    margin-top: 30px;
+                    width: 90%;
+                    background-color: transparent;
+                    height: 43vh;
+                    color: #6264A7;
+                    ;
+                    overflow-y: scroll;
+                    border-top-left-radius: 40px;
+                    border-top-right-radius: 40px;
+                    border-bottom-right-radius: 40px;
+                    border-bottom-left-radius: 40px;
+                    border: 3px solid #6264A7;
+                    ;
+                    /* scrollbar-color: ; */
+                }
+
+            .dashboard .dashboard-pf-section {
+                width: 24vw;
+                background-color: rgb(255, 255, 240);
+            }
+
+                .dashboard .dashboard-pf-section .dashboard-pfp-section {
+                    width: 99%;
+                    /* border-top-left-radius: 5%; */
+                    border-top-right-radius: 5%;
+                    background-color: rgb(255, 255, 240);
+                    color: #6264A7;
+                    height: 35%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: 3px #6264A7 solid;
+                }
+
+                    .dashboard .dashboard-pf-section .dashboard-pfp-section #pfp-of-user {
+                        width: 250px;
+                        border-radius: 50%;
+                    }
+
+                .dashboard .dashboard-pf-section .dashboard-pf-details {
+                    height: 64%;
+                    background-color: rgb(255, 255, 240);
+                    display: flex;
+                    color: #6264A7;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    font-size: 20px;
+                    border: 3px solid #6264A7;
+                    /* border-bottom-left-radius: 5%; */
+                    border-bottom-right-radius: 5%;
+                }
+
+        .dashboard-pf-details p {
+            line-height: 2.5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .schedule-class {
+            height: 10vh;
+            border-bottom: 3px solid #6264A7;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 6%;
+            padding-right: 6%;
+        }
+
+            .schedule-class:hover {
+                background-color: #6264A7;
+                color: white;
+            }
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .cards {
+            background-color: transparent;
+            border-top: 1px solid transparent; /* Add a transparent border */
+            font-family: 'Anek Devanagari', sans-serif;
+            display: flex;
+        }
+
+        .card-1 {
+            margin-top: 60px;
+            margin-left: 20px;
+            width: 25vw;
+            height: 30vh;
+            background-color: #6264A7;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+            border-bottom-left-radius: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .card-1-1 img {
+            width: 200px;
+            margin-right: 20px;
+        }
+
+        .card-1-2 #number {
+            text-align: center;
+        }
+
+    </style>
+    <div class="dashboard">
+        <div class="dashboard-main-section">
+            <div class="dashboard-main-section-welcome">
+                <h1>
+                    Welcome to Bahria University <br>
+                    Learning Management System
+                </h1>
+                <img src="https://cdn1.iconfinder.com/data/icons/education-vol-2-1/64/091-512.png" alt="">
+            </div>
+            <div class="cards">
+                <div class="card-1">
+                    <div class="card-1-1">
+                        <img src="@Url.Content("~/Content/images/teacher.png")" alt="">
+                    </div>
+                    <div class="card-1-2">
+                        <h1>Teachers</h1>
+                        <h1 id="number">@ViewData["f_count"]</h1>
+                    </div>
+                </div>
+                <div class="card-1">
+                    <div class="card-1-1">
+                        <img src="@Url.Content("~/Content/images/student.png")" alt="">
+                    </div>
+                    <div class="card-1-2">
+                        <h1>Students</h1>
+                        <h1 id="number">@ViewData["s_count"]</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="dashboard-pf-section">
+                <div class="dashboard-pfp-section">
+                    <img src="@Url.Content("~/Content/images/admin.png")" id="pfp-of-user" alt="">
+                </div>
+                <div class="dashboard-pf-details">
+                    <p>
+                        <b>Admin ID:</b>
+                        @ViewData["id"]
+
+                    </p>
+                    <p>
+                        <b>Admin Username:</b>
+                        @ViewData["name"]
+
+                    </p>
+                    <p>
+                        <b>Admin Email:</b>
+                        @ViewData["email"]
+
+                    </p>
+
+                    <p>
+                        <b>Faculty Phone:</b>
+                        @ViewData["phone"]
+
+                    </p>
+                    <p>
+                        <b>Faculty Address:</b>
+                        @ViewData["address"]
+
+                    </p>
+                    <p>
+                        <b>Faculty Date Of Birth:</b>
+                        @ViewData["dob"]
+
+                    </p>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
+
+
+

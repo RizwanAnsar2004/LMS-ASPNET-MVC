@@ -1,0 +1,345 @@
+﻿@model IEnumerable<Project.Models.course>
+
+@{
+    ViewBag.Title = "faculty_lecture";
+    Layout = "~/Views/Shared/faculty_layout.cshtml";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-container-lecture-page {
+            width: 80vw;
+            height: 93vh;
+            overflow-y: scroll;
+            background-color: rgb(255, 255, 240);
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+            border-bottom-left-radius: 40px;
+            border: 3px solid green;
+        }
+
+            .main-container-lecture-page h1 {
+                color: green;
+                margin-left: 2%;
+            }
+
+            .main-container-lecture-page .nav-of-page {
+                margin-top: 30px;
+                background-color: transparent;
+                width: 70%;
+                height: 6%;
+                margin-left: 7.5%;
+                display: flex;
+                justify-content: space-between;
+                padding-left: 50px;
+                padding-right: 100px;
+                align-items: center;
+                color: green;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                border: 3px solid green;
+            }
+
+            .main-container-lecture-page .upload-lecture-section {
+                width: 80%;
+                height: 15%;
+                background-color: transparent;
+                margin-left: 7%;
+                margin-top: 2%;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                border: 3px solid green;
+                display: flex;
+                justify-content: space-between;
+            }
+
+                .main-container-lecture-page .upload-lecture-section .upload-lecture-section-1 {
+                    width: 25%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+
+
+                    .main-container-lecture-page .upload-lecture-section .upload-lecture-section-1 h1 {
+                        color: green;
+                    }
+
+                .main-container-lecture-page .upload-lecture-section .upload-lecture-section-2 {
+                    width: 25%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                    .main-container-lecture-page .upload-lecture-section .upload-lecture-section-2 button {
+                        margin-top: 7px;
+                        padding: 10px;
+                        border-top-left-radius: 40px;
+                        border-top-right-radius: 40px;
+                        border-bottom-right-radius: 40px;
+                        border-bottom-left-radius: 40px;
+                        border: 3px solid green;
+                        background-color: transparent;
+                        color: green;
+                        overflow: hidden;
+                    }
+
+                        .main-container-lecture-page .upload-lecture-section .upload-lecture-section-2 button:hover {
+                            background-color: rgba(0, 128, 0, 0.338);
+                            color: white;
+                        }
+
+                        .main-container-lecture-page .upload-lecture-section .upload-lecture-section-2 button a img {
+                            width: 50px;
+                            height: 50px;
+                        }
+
+            .main-container-lecture-page .lectures-section {
+                margin-top: 1%;
+                background-color: transparent;
+                width: 95%;
+                height: 60%;
+                overflow-y: scroll;
+                margin-left: 3%;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                border: 3px solid green;
+            }
+
+        .more-div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-right: 10%;
+        }
+
+        .more-div-1 {
+            display: flex;
+            align-items: center;
+        }
+
+            .more-div-1 #semester {
+                width: 50px;
+                height: 30px;
+                margin-top: 10px;
+                margin-left: 15px;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                border: 3px solid green;
+            }
+
+            .more-div-1 #search {
+                margin-top: 10px;
+                margin-left: 10px;
+                padding: 10px;
+                padding-left: 15px;
+                padding-right: 15px;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                border: 3px solid green;
+                color: white;
+                background-color: green;
+            }
+
+                .more-div-1 #search:hover {
+                    background-color: white;
+                    color: green;
+                }
+
+            .more-div-1 form {
+                display: flex;
+            }
+        .table {
+            background-color: transparent;
+            width: 100%;
+        }
+
+        table td {
+            text-align: center;
+            height: 20px;
+            font-size: 18px;
+        }
+
+            table td button {
+                padding: 10px;
+                background-color: red;
+                border: none;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                /*border: 3px solid green;*/
+                transition: 0.5ms ease-in-out;
+            }
+
+                table td button:hover {
+                    background-color: green;
+                }
+
+                table td button a {
+                    text-decoration: none;
+                    color: white;
+                }
+
+        #delete {
+            background-color: green;
+            transition: 0.5ms ease-in-out;
+            color: white;
+        }
+
+            #delete:hover {
+                background-color: red;
+            }
+        .reject {
+            color: white;
+        }
+    </style>
+    <div class="main-container-lecture-page">
+        <div class="nav-of-page">
+            <h1>Manage Lectures</h1>
+        </div>
+        <div class="upload-lecture-section">
+            <div class="upload-lecture-section-1">
+                <h1>Upload Lecture</h1>
+            </div>
+            <div class="upload-lecture-section-2">
+                <div class="upload-lecture-icon">
+                    <button>
+                        <a href="@Url.Action("upload_lecture","faculty")">
+                            <img src="@Url.Content("~/Content/images/save-green-com.png")" alt="">
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="more-div">
+            <h1>Lectures:</h1>
+            <!--<div class="more-div-1">
+                <h1>Semester</h1>
+                <form>
+                    <select name="" id="semester" required>
+                        <option value="1"> 1</option>
+                        <option value="3"> 2</option>
+                        <option value="3"> 3</option>
+                        <option value="4"> 4</option>
+                        <option value="5"> 5</option>
+                        <option value="6"> 6</option>
+                        <option value="7"> 7</option>
+                        <option value="8"> 8</option>
+                    </select>
+                    <input type="submit" value="Submit" id="search">-->
+                    @*<button id="search"> Search</button>*@
+                <!--</form>
+            </div>-->
+        </div>
+        <div class="lectures-section">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CourseID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CourseName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CourseDescription)
+                    </th>
+                    <th>
+
+                        Path
+                    </th>
+                    <th>Actions</th>
+                    @*<th>
+            Actions
+        </th>*@
+                </tr>
+                <script>
+        function deleteAssignment(id) {
+            if (confirm("Are you sure you want to delete this assignment?")) {
+                $.ajax({
+                    url: '@Url.Action("Delete","faculty")',
+                    type: 'POST',
+                    dataType: "json",
+
+                    data: { id: id },
+                    headers: {
+                        'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            alert("Assignment deleted successfully.");
+                            // Remove the deleted assignment row from the table
+                            $('#assignment-' + id).remove();
+                        } else {
+                            alert(response.message || "An error occurred while deleting the assignment.");
+                        }
+                    },
+                    error: function () {
+                        alert("An error occurred while deleting the assignment.");
+                    }
+                });
+            }
+        }
+                </script>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.CourseID)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CourseName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CourseDescription)</td>
+
+                        @*<td>@Html.DisplayFor(modelItem => item.AssignmentType)</td>*@
+                        <td>
+                            <button><a href="@Html.DisplayNameFor(model => model.Schedule)" download>Download </a></button>
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("deleteLecture", "faculty", new { id = item.CourseID }, FormMethod.Post))
+                            {
+                                <button type="submit" class="reject">Delete</button>
+                            }
+                        </td>
+                        <!--<td>
+
+    <button id="delete"-->
+                        @*onclick="deleteAssignment(modelItem=>@item.AssignmentID)">*@
+                        <!--<p>Delete</p>-->
+                        @*@Html.ActionLink("Delete", "Delete", new { id = item.AssignmentID })*@
+                        <!--</button>
+    </td>-->
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</body>
+</html>

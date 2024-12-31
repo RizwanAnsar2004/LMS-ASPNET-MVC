@@ -1,0 +1,150 @@
+﻿@model IEnumerable<Project.Models.Faculty>
+
+@{
+    ViewBag.Title = "Manage_Faculty";
+    Layout = "~/Views/Shared/admin_layout.cshtml";
+
+}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 30px;
+        color: #6264A7;
+    }
+
+    .table {
+        width: 100%;
+        margin-top: 25px;
+    }
+
+    th {
+        text-align: center;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    .reject {
+        background-color: transparent;
+        border: none;
+        color: red;
+    }
+
+        .reject:hover {
+            color: blueviolet;
+        }
+
+    a, a:visited, a:active {
+        color: red;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: blueviolet;
+        }
+
+    #createNewLink {
+        margin-left: 50px;
+        background-color: #6264A7;
+        color: white;
+        padding: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 30px;
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+        border-bottom-right-radius: 40px;
+        border-bottom-left-radius: 40px;
+        border: 3px solid #6264A7;
+        transition: 0.5s ease-in-out;
+    }
+
+        #createNewLink:hover {
+            color: red;
+            Background-color: white;
+        }
+</style>
+<h2>Manage_Faculty</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create_Faculty", null,new { id = "createNewLink", @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.OfficeLocation)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+       <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfBirth)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.OfficeLocation)
+        </td>
+    
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+     
+        <td>
+            @Html.ActionLink("Edit", "Update_Faculty", new { id = item.FacultyID }) |
+
+            @using (Html.BeginForm("Delete_Faculty", "Admin", new { id = item.FacultyID }, FormMethod.Post))
+            {
+                @*@Html.ActionLink("Delete", "Delete_Student", new { id = item.StudentID })*@
+                <button type="submit" class="reject">Delete</button>
+            }
+        </td>
+    </tr>
+}
+
+</table>

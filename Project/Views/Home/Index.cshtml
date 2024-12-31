@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+}
+
+@model Project.Models.MyLogin
+
+@if (Model!=null && Model.IsPageVisited)
+{ 
+    <p>The application is ready to open</p>
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <style>
+
+        .front_body {
+            background-image: url('https://th.bing.com/th/id/R.ba2f4590b05fb03200d94526a09feb8d?rik=fXqDDyHIgZ0NpQ&pid=ImgRaw&r=0');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            width: 100vw;
+        }
+
+            .front_body .section-1 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                height: 20vh;
+                /* background-color: red; */
+            }
+
+                .front_body .section-1 h1 {
+                    font-size: 70px;
+                    font-weight: bolder;
+                    color: rgb(139, 206, 245);
+                }
+
+                    .front_body .section-1 h1 #heading {
+                        color: rgb(38,22,99);
+                    }
+
+            .front_body .container {
+                margin-top: 50px;
+                background-color: transparent;
+                width: 100vw;
+                border-radius: 5%;
+                displaylf
+            }
+
+                .front_body .container .row {
+                    gap: 30px;
+                }
+
+                .front_body .container .col {
+                    background-color: pink;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    height: 60vh;
+                    border-radius: 5%;
+                }
+
+                    .front_body .container .col button {
+                        width: 200px;
+                        padding: 10px;
+                        border-radius: 35%;
+                        margin-top: 30px;
+                        background-color: transparent;
+                        color: black;
+                        font-size: 20px;
+                        font-weight: bolder;
+                        border-width: 3px;
+                        border-color: black;
+                        transition: 0.2s ease;
+                    }
+
+                        .front_body .container .col button:hover {
+                            background-color: rgb(38,22,99);
+                            color: white;
+                            border-color: white;
+                        }
+    </style>
+    <div class="front_body">
+        <div class="section-1">
+            <img src="https://bahria.edu.pk/bukc/wp-content/themes/buhq_theme/images/logo/logo5.png" alt="">
+            <h1>
+                WELCOME TO
+                <section><h1 id="heading">BAHRIA UNIVERSITY<h1></h1></section>
+            </h1>
+        </div>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita cupiditate delectus beatae quis facilis harum rem culpa, amet eum repudiandae, molestias perspiciatis eligendi laudantium? Totam ea saepe ad repellat vero?
+                    <a href="@Url.Action("stuLogin", "Account")"><button id="studentlogin">Student Login</button></a>
+                </div>
+                <div class="col">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem iusto quo a ex totam! Perferendis molestias non, aliquid perspiciatis blanditiis ea laboriosam tempora ad numquam? Animi repudiandae dicta quaerat amet!
+                    <a href="@Url.Action("fac_Login", "Account")">  <button id="facultylogin">Faculty Login</button></a>
+                </div>
+                <div class="col">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta dolores hic voluptates sint, nemo magni consequuntur error asperiores eveniet dolor quod nulla vero amet earum totam distinctio nihil corporis enim!
+                    <a href="@Url.Action("ad_Login", "Account")"><button id="adminlogin">Admin Login</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>*@
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*@RenderSection("scripts", required: false)*@
+</body>
+
+</html>

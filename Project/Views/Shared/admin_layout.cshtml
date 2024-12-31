@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "admin_layout";
+}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <style>
+        .bodyforsection {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: row;
+            font-family: 'Anek Devanagari', sans-serif;
+        }
+
+            .bodyforsection .sidebar {
+                width: 20%;
+                background-color: #6264A7;
+                color: rgb(255, 255, 240);
+                border-radius: 3.5%;
+                position: fixed;
+                border-left: 2px black solid;
+                border-right: 2px black solid;
+                height: 100vh;
+                font-family: 'Anek Devanagari', sans-serif;
+            }
+
+                .bodyforsection .sidebar .sidebarlogo {
+                    width: 100%;
+                    height: 28%;
+                    border-top-left-radius: 5%;
+                    border-top-right-radius: 5%;
+                    background-color: transparent;
+                    border-top: 2px black solid;
+                    display: flex;
+                    align-items: center;
+                    font-family: 'Anek Devanagari', sans-serif;
+                    justify-content: center;
+                }
+
+                    .bodyforsection .sidebar .sidebarlogo img {
+                        padding-left: 20px;
+                        width: 350px;
+                        /* height: fit-content; */
+                    }
+
+                .bodyforsection .sidebar .sidebarlist {
+                    margin-top: 10px;
+                    width: 100%;
+                    overflow: hidden;
+                }
+
+                    .bodyforsection .sidebar .sidebarlist .listitem {
+                        padding: 5%;
+                        width: 100%;
+                        background-color: #6264A7;
+                        color: rgb(255, 255, 240);
+                        font-family: 'Anek Devanagari', sans-serif;
+                        border: 2px rgba(255, 255, 255, 0.62);
+                        transition: 0.2s ease-in-out;
+                        text-align: center;
+                        font-size: 20px;
+                        font-weight: 500;
+                    }
+
+                        .bodyforsection .sidebar .sidebarlist .listitem:hover {
+                            background-color: rgb(255, 255, 240);
+                            color: black;
+                        }
+
+        .maincontent {
+            margin-left: 20.25%;
+            width: 80%;
+            /* background-color: aqua; */
+            height: 100%;
+            /* border-top-left-radius:5% ; */
+        }
+
+        .maincontent1 {
+            border-top-left-radius: 20px;
+            width: 100%;
+            height: 7%;
+            /* background-color: rgb(255, 255, 240);*/
+            background-color: #6264A7;
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            border-bottom: 2px black solid;
+            ;
+        }
+
+        .maincontent2 {
+            background-color: rgb(255, 255, 240);
+        }
+    </style>
+    <div class="bodyforsection">
+        <div class="sidebar">
+            <div class="sidebarlogo">
+                <img src="https://bahria.edu.pk/bukc/wp-content/themes/buhq_theme/images/logo/logo5.png" alt="bahria logo will come here">
+            </div>
+            <div class="sidebarlist">
+
+                <a href="@Url.Action("admin_dashboard","Admin")">
+                    <button class="listitem">Dashboard</button>
+                </a>
+                <a href="@Url.Action("Manage_Faculty","Admin")">
+                    <button class="listitem">Manage Faculty</button>
+                </a>
+                <a href="@Url.Action("Manage_Student", "Admin")">
+                    <button class="listitem">Manage Students</button>
+                </a>
+                @*<a href="@Url.Action("faculty_appointment","faculty")">*@
+                @*<button class="listitem">Manage Accounts</button>*@
+                @*</a>*@
+                @*<a href="@Url.Action("stu_appointment","Stu")">
+                    <button class="listitem">Schedule Extra Classes</button>
+                *@
+                @*</a>*@
+                 <a href="@Url.Action("Index","Home")">
+
+                <button class="listitem">Logout</button>
+                 </a>
+
+
+            </div>
+        </div>
+        <div class="maincontent">
+            <div class="maincontent1">
+                @DateTime.Now.Date
+
+            </div>
+            <div class="maincontent2">
+                @RenderBody()
+
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b11a84c07e7f4303a561f555e75d1f15" Name="Diagram1" ZoomLevel="115">
+        <EntityTypeShape EntityType="SDAprojectModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDAprojectModel.Appointment" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDAprojectModel.Assignment" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDAprojectModel.Cours" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDAprojectModel.Department" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDAprojectModel.Enrollment" Width="1.5" PointX="8.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDAprojectModel.Faculty" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDAprojectModel.Grade" Width="1.5" PointX="7.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDAprojectModel.Major" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDAprojectModel.StudentResult" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDAprojectModel.Student" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDAprojectModel.Submission" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDAprojectModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="SDAprojectModel.FK__Appointme__Facul__17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="SDAprojectModel.FK__Appointme__Stude__17036CC0" ManuallyRouted="false" />
+        <AssociationConnector Association="SDAprojectModel.FK__Assignmen__Cours__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="SDAprojectModel.FK__Submissio__Assig__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="SDAprojectModel.FK__Courses__Departm__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="SDAprojectModel.FK__Courses__Instruc__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="SDAprojectModel.FK__Enrollmen__Cours__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="SDAprojectModel.FK__StudentRe__Cours__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="SDAprojectModel.FK__Faculty__Departm__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="SDAprojectModel.FK__Enrollmen__Stude__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="SDAprojectModel.FK__Grades__GraderID__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="SDAprojectModel.FK__Grades__Submissi__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="SDAprojectModel.FK__Students__MajorI__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="SDAprojectModel.FK__StudentRe__Stude__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="SDAprojectModel.FK__Submissio__Stude__68487DD7" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

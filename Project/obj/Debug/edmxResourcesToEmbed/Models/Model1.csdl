@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SDAprojectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="UserAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" />
+    <Property Name="RegistrationDate" Type="DateTime" />
+    <Property Name="RoleDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Permissions" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="AppointmentID" />
+    </Key>
+    <Property Name="AppointmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="FacultyID" Type="Int32" Nullable="false" />
+    <Property Name="AppointmentDateTime" Type="DateTime" Nullable="false" />
+    <Property Name="AppointmentDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Faculty" Relationship="Self.FK__Appointme__Facul__17F790F9" FromRole="Appointments" ToRole="Faculty" />
+    <NavigationProperty Name="Student" Relationship="Self.FK__Appointme__Stude__17036CC0" FromRole="Appointments" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Assignment">
+    <Key>
+      <PropertyRef Name="AssignmentID" />
+    </Key>
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseID" Type="Int32" />
+    <Property Name="AssignmentTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AssignmentDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DueDate" Type="DateTime" />
+    <Property Name="MaxPoints" Type="Int32" />
+    <Property Name="AssignmentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AssignmentFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK__Assignmen__Cours__6477ECF3" FromRole="Assignments" ToRole="Courses" />
+    <NavigationProperty Name="Submissions" Relationship="Self.FK__Submissio__Assig__6754599E" FromRole="Assignments" ToRole="Submissions" />
+  </EntityType>
+  <EntityType Name="Cours">
+    <Key>
+      <PropertyRef Name="CourseID" />
+    </Key>
+    <Property Name="CourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CourseDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Credits" Type="Int32" />
+    <Property Name="DepartmentID" Type="Int32" />
+    <Property Name="InstructorID" Type="Int32" />
+    <Property Name="Schedule" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Assignments" Relationship="Self.FK__Assignmen__Cours__6477ECF3" FromRole="Courses" ToRole="Assignments" />
+    <NavigationProperty Name="Department" Relationship="Self.FK__Courses__Departm__5DCAEF64" FromRole="Courses" ToRole="Departments" />
+    <NavigationProperty Name="Faculty" Relationship="Self.FK__Courses__Instruc__5CD6CB2B" FromRole="Courses" ToRole="Faculty" />
+    <NavigationProperty Name="Enrollments" Relationship="Self.FK__Enrollmen__Cours__619B8048" FromRole="Courses" ToRole="Enrollments" />
+    <NavigationProperty Name="StudentResults" Relationship="Self.FK__StudentRe__Cours__6FE99F9F" FromRole="Courses" ToRole="StudentResults" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DepartmentID" />
+    </Key>
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK__Courses__Departm__5DCAEF64" FromRole="Departments" ToRole="Courses" />
+    <NavigationProperty Name="Faculties" Relationship="Self.FK__Faculty__Departm__5629CD9C" FromRole="Departments" ToRole="Faculty" />
+  </EntityType>
+  <EntityType Name="Enrollment">
+    <Key>
+      <PropertyRef Name="EnrollmentID" />
+    </Key>
+    <Property Name="EnrollmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentID" Type="Int32" />
+    <Property Name="CourseID" Type="Int32" />
+    <Property Name="EnrollmentDate" Type="DateTime" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Grade" Type="Decimal" Precision="3" Scale="2" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK__Enrollmen__Cours__619B8048" FromRole="Enrollments" ToRole="Courses" />
+    <NavigationProperty Name="Student" Relationship="Self.FK__Enrollmen__Stude__60A75C0F" FromRole="Enrollments" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Faculty">
+    <Key>
+      <PropertyRef Name="FacultyID" />
+    </Key>
+    <Property Name="FacultyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="UserAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" />
+    <Property Name="RegistrationDate" Type="DateTime" />
+    <Property Name="DepartmentID" Type="Int32" />
+    <Property Name="OfficeLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="HireDate" Type="DateTime" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Appointments" Relationship="Self.FK__Appointme__Facul__17F790F9" FromRole="Faculty" ToRole="Appointments" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK__Courses__Instruc__5CD6CB2B" FromRole="Faculty" ToRole="Courses" />
+    <NavigationProperty Name="Department" Relationship="Self.FK__Faculty__Departm__5629CD9C" FromRole="Faculty" ToRole="Departments" />
+    <NavigationProperty Name="Grades" Relationship="Self.FK__Grades__GraderID__6C190EBB" FromRole="Faculty" ToRole="Grades" />
+  </EntityType>
+  <EntityType Name="Grade">
+    <Key>
+      <PropertyRef Name="GradeID" />
+    </Key>
+    <Property Name="GradeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubmissionID" Type="Int32" />
+    <Property Name="GradeValue" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Feedback" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="GradingDate" Type="DateTime" />
+    <Property Name="GraderID" Type="Int32" />
+    <NavigationProperty Name="Faculty" Relationship="Self.FK__Grades__GraderID__6C190EBB" FromRole="Grades" ToRole="Faculty" />
+    <NavigationProperty Name="Submission" Relationship="Self.FK__Grades__Submissi__6B24EA82" FromRole="Grades" ToRole="Submissions" />
+  </EntityType>
+  <EntityType Name="Major">
+    <Key>
+      <PropertyRef Name="MajorID" />
+    </Key>
+    <Property Name="MajorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MajorName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Students" Relationship="Self.FK__Students__MajorI__5165187F" FromRole="Majors" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="StudentResult">
+    <Key>
+      <PropertyRef Name="ResultID" />
+    </Key>
+    <Property Name="ResultID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentID" Type="Int32" />
+    <Property Name="CourseID" Type="Int32" />
+    <Property Name="Grade" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK__StudentRe__Cours__6FE99F9F" FromRole="StudentResults" ToRole="Courses" />
+    <NavigationProperty Name="Student" Relationship="Self.FK__StudentRe__Stude__6EF57B66" FromRole="StudentResults" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="UserAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" />
+    <Property Name="RegistrationDate" Type="DateTime" />
+    <Property Name="EnrollmentDate" Type="DateTime" />
+    <Property Name="MajorID" Type="Int32" />
+    <Property Name="YearOfStudy" Type="Int32" />
+    <Property Name="GPA" Type="Decimal" Precision="3" Scale="2" />
+    <NavigationProperty Name="Appointments" Relationship="Self.FK__Appointme__Stude__17036CC0" FromRole="Students" ToRole="Appointments" />
+    <NavigationProperty Name="Enrollments" Relationship="Self.FK__Enrollmen__Stude__60A75C0F" FromRole="Students" ToRole="Enrollments" />
+    <NavigationProperty Name="Major" Relationship="Self.FK__Students__MajorI__5165187F" FromRole="Students" ToRole="Majors" />
+    <NavigationProperty Name="StudentResults" Relationship="Self.FK__StudentRe__Stude__6EF57B66" FromRole="Students" ToRole="StudentResults" />
+    <NavigationProperty Name="Submissions" Relationship="Self.FK__Submissio__Stude__68487DD7" FromRole="Students" ToRole="Submissions" />
+  </EntityType>
+  <EntityType Name="Submission">
+    <Key>
+      <PropertyRef Name="SubmissionID" />
+    </Key>
+    <Property Name="SubmissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AssignmentID" Type="Int32" />
+    <Property Name="StudentID" Type="Int32" />
+    <Property Name="SubmissionDate" Type="DateTime" />
+    <Property Name="SubmissionContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Assignment" Relationship="Self.FK__Submissio__Assig__6754599E" FromRole="Submissions" ToRole="Assignments" />
+    <NavigationProperty Name="Grades" Relationship="Self.FK__Grades__Submissi__6B24EA82" FromRole="Submissions" ToRole="Grades" />
+    <NavigationProperty Name="Student" Relationship="Self.FK__Submissio__Stude__68487DD7" FromRole="Submissions" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__Appointme__Facul__17F790F9">
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
+    <End Role="Appointments" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyID" />
+      </Principal>
+      <Dependent Role="Appointments">
+        <PropertyRef Name="FacultyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Appointme__Stude__17036CC0">
+    <End Role="Students" Type="Self.Student" Multiplicity="1" />
+    <End Role="Appointments" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Appointments">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Assignmen__Cours__6477ECF3">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="0..1" />
+    <End Role="Assignments" Type="Self.Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="Assignments">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Submissio__Assig__6754599E">
+    <End Role="Assignments" Type="Self.Assignment" Multiplicity="0..1" />
+    <End Role="Submissions" Type="Self.Submission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignments">
+        <PropertyRef Name="AssignmentID" />
+      </Principal>
+      <Dependent Role="Submissions">
+        <PropertyRef Name="AssignmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Courses__Departm__5DCAEF64">
+    <End Role="Departments" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Courses" Type="Self.Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="DepartmentID" />
+      </Principal>
+      <Dependent Role="Courses">
+        <PropertyRef Name="DepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Courses__Instruc__5CD6CB2B">
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+    <End Role="Courses" Type="Self.Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyID" />
+      </Principal>
+      <Dependent Role="Courses">
+        <PropertyRef Name="InstructorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Enrollmen__Cours__619B8048">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="0..1" />
+    <End Role="Enrollments" Type="Self.Enrollment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="Enrollments">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentRe__Cours__6FE99F9F">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="0..1" />
+    <End Role="StudentResults" Type="Self.StudentResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="StudentResults">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Faculty__Departm__5629CD9C">
+    <End Role="Departments" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="DepartmentID" />
+      </Principal>
+      <Dependent Role="Faculty">
+        <PropertyRef Name="DepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Enrollmen__Stude__60A75C0F">
+    <End Role="Students" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="Enrollments" Type="Self.Enrollment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Enrollments">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Grades__GraderID__6C190EBB">
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+    <End Role="Grades" Type="Self.Grade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyID" />
+      </Principal>
+      <Dependent Role="Grades">
+        <PropertyRef Name="GraderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Grades__Submissi__6B24EA82">
+    <End Role="Submissions" Type="Self.Submission" Multiplicity="0..1" />
+    <End Role="Grades" Type="Self.Grade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Submissions">
+        <PropertyRef Name="SubmissionID" />
+      </Principal>
+      <Dependent Role="Grades">
+        <PropertyRef Name="SubmissionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Students__MajorI__5165187F">
+    <End Role="Majors" Type="Self.Major" Multiplicity="0..1" />
+    <End Role="Students" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Majors">
+        <PropertyRef Name="MajorID" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="MajorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentRe__Stude__6EF57B66">
+    <End Role="Students" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="StudentResults" Type="Self.StudentResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="StudentResults">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Submissio__Stude__68487DD7">
+    <End Role="Students" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="Submissions" Type="Self.Submission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Submissions">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SDAprojectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Appointments" EntityType="Self.Appointment" />
+    <EntitySet Name="Assignments" EntityType="Self.Assignment" />
+    <EntitySet Name="Courses" EntityType="Self.Cours" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Enrollments" EntityType="Self.Enrollment" />
+    <EntitySet Name="Faculties" EntityType="Self.Faculty" />
+    <EntitySet Name="Grades" EntityType="Self.Grade" />
+    <EntitySet Name="Majors" EntityType="Self.Major" />
+    <EntitySet Name="StudentResults" EntityType="Self.StudentResult" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="Submissions" EntityType="Self.Submission" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK__Appointme__Facul__17F790F9" Association="Self.FK__Appointme__Facul__17F790F9">
+      <End Role="Faculty" EntitySet="Faculties" />
+      <End Role="Appointments" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Appointme__Stude__17036CC0" Association="Self.FK__Appointme__Stude__17036CC0">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Appointments" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Assignmen__Cours__6477ECF3" Association="Self.FK__Assignmen__Cours__6477ECF3">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Assignments" EntitySet="Assignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Submissio__Assig__6754599E" Association="Self.FK__Submissio__Assig__6754599E">
+      <End Role="Assignments" EntitySet="Assignments" />
+      <End Role="Submissions" EntitySet="Submissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Courses__Departm__5DCAEF64" Association="Self.FK__Courses__Departm__5DCAEF64">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Courses" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Courses__Instruc__5CD6CB2B" Association="Self.FK__Courses__Instruc__5CD6CB2B">
+      <End Role="Faculty" EntitySet="Faculties" />
+      <End Role="Courses" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Enrollmen__Cours__619B8048" Association="Self.FK__Enrollmen__Cours__619B8048">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Enrollments" EntitySet="Enrollments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentRe__Cours__6FE99F9F" Association="Self.FK__StudentRe__Cours__6FE99F9F">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="StudentResults" EntitySet="StudentResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Faculty__Departm__5629CD9C" Association="Self.FK__Faculty__Departm__5629CD9C">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Faculty" EntitySet="Faculties" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Enrollmen__Stude__60A75C0F" Association="Self.FK__Enrollmen__Stude__60A75C0F">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Enrollments" EntitySet="Enrollments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Grades__GraderID__6C190EBB" Association="Self.FK__Grades__GraderID__6C190EBB">
+      <End Role="Faculty" EntitySet="Faculties" />
+      <End Role="Grades" EntitySet="Grades" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Grades__Submissi__6B24EA82" Association="Self.FK__Grades__Submissi__6B24EA82">
+      <End Role="Submissions" EntitySet="Submissions" />
+      <End Role="Grades" EntitySet="Grades" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Students__MajorI__5165187F" Association="Self.FK__Students__MajorI__5165187F">
+      <End Role="Majors" EntitySet="Majors" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentRe__Stude__6EF57B66" Association="Self.FK__StudentRe__Stude__6EF57B66">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="StudentResults" EntitySet="StudentResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Submissio__Stude__68487DD7" Association="Self.FK__Submissio__Stude__68487DD7">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Submissions" EntitySet="Submissions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

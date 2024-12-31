@@ -1,0 +1,205 @@
+﻿
+@model IEnumerable<Project.Models.app>
+
+
+@{
+    ViewBag.Title = "stu_appointment";
+    Layout = "~/Views/Shared/Student_layout.cshtml";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <style>
+        .main-appointment {
+            width: 80vw;
+            height: 93vh;
+            background-color: rgb(255, 255, 240);
+            padding-top: 1px;
+            overflow-y: scroll;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+            border-bottom-left-radius: 40px;
+            border: 3px solid black;
+        }
+
+            .main-appointment .nav-of-page {
+                margin-top: 30px;
+                background-color: rgb(255, 255, 240);
+                width: 75%;
+                margin-left: 4%;
+                display: flex;
+                justify-content: space-between;
+                padding-left: 50px;
+                padding-right: 100px;
+                align-items: center;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                border: 3px solid black;
+            }
+
+        .appointment-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* margin-right: 70px; */
+        }
+
+        .appointment-teacher {
+            margin-right: 200px;
+            display: flex;
+            align-items: center;
+        }
+
+            .appointment-teacher h3 {
+                font-size: 30px;
+            }
+
+            .appointment-teacher select {
+                width: 220px;
+                margin-left: 30px;
+                height: 70px;
+                font-size: 17px;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                border: 3px solid black;
+            }
+
+                .appointment-teacher select option:checked {
+                    background-color: grey;
+                    color: white;
+                }
+
+        .appointment-nav .appointment-calender {
+            margin-top: 30px;
+            margin-left: 70px;
+            display: flex;
+            align-items: center;
+        }
+
+            .appointment-nav .appointment-calender h3 {
+                font-size: 30px;
+            }
+
+            .appointment-nav .appointment-calender input {
+                margin-left: 40px;
+                height: 50px;
+                font-size: 20px;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                border: 3px solid black;
+                padding: 10px;
+                background-color: white;
+            }
+
+        .appointment-app {
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+            text-align: left;
+            font-family: 'Anek Devanagari', sans-serif;
+            font-size: 30px;
+        }
+
+            .appointment-app h4 {
+                position: relative;
+                bottom: 30px;
+            }
+
+            .appointment-app #multi-line-text {
+                position: relative;
+                bottom: 70px;
+                background-color: white;
+                /* margin-top: 40px; */
+                width: 85%;
+                font-size: 20px;
+                font-family: 'Anek Devanagari', sans-serif;
+                height: 50vh;
+            }
+
+        .appointment-submit {
+            display: flex;
+            justify-content: flex-end;
+            /* background-color: yellow; */
+            position: relative;
+            bottom: 30px;
+        }
+
+            .appointment-submit #submit {
+                margin-right: 150px;
+                padding: 10px;
+                padding-left: 50px;
+                padding-right: 50px;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                border: 3px solid black;
+                font-size: 20px;
+                font-family: 'Anek Devanagari', sans-serif;
+                font-weight: bold;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgb(255, 255, 240);
+                transition: 0.8s ease-in-out;
+            }
+
+                .appointment-submit #submit:hover {
+                    background-color: red;
+                    color: white;
+                }
+    </style>
+    <div class="main-appointment">
+        <div class="nav-of-page">
+            <h1>Schedule a meeting</h1>
+
+        </div>
+        <form >
+              @*action="@Url.Action("uploadLecture", "faculty")" method="post" enctype="multipart/form-data">*@
+            <div class="main-section-appointment">
+                <div class="appointment-nav">
+                    <div class="appointment-calender">
+                        <h3><label for="lecture-name">Choose Date:  </label></h3>
+                        <input type="datetime-local" required>
+                    </div>
+                    <div class="appointment-teacher">
+                        <h3>Choose Date:</h3>
+                        <select name="Teacher" id="Teacher" required>
+                            <option value="faisal">Sir Faisal</option>
+                            <option value="teacher">Sir Faiz</option>
+                            <option value="teacher">Mobeen Nazr</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="appointment-app">
+                    <h4>Why Do  you want to Book an Appointment?</h4>
+                    <textarea id="multi-line-text" name="multi-line-text" required></textarea>
+                </div>
+                <div class="appointment-submit">
+                    <input type="submit" id="submit">
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+﻿@model IEnumerable<Project.Models.Student>
+
+@{
+    ViewBag.Title = "Manage_Student";
+    Layout = "~/Views/Shared/admin_layout.cshtml";
+
+}
+
+<h2>Manage_Student</h2>
+<style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    h2 {
+        text-align: center;
+        font-size: 30px;
+        color: #6264A7;
+    }
+    .table {
+        width: 100%;
+        margin-top: 25px;
+    }
+    th{
+        text-align:center;
+    }
+    td{
+        text-align:center;
+    }
+    .reject{
+        background-color:transparent;
+        border:none;
+        color:red;
+    }
+        .reject:hover {
+            color: blueviolet;
+        }
+        a, a:visited, a:active {
+            color: red;
+            text-decoration: none;
+        }
+        a:hover{
+            color:blueviolet;
+        }
+    #createNewLink {
+        margin-left: 50px;
+        
+        background-color: #6264A7;
+        color: white;
+        padding: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 30px;
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+        border-bottom-right-radius: 40px;
+        border-bottom-left-radius: 40px;
+        border: 3px solid #6264A7;
+        transition:0.5s ease-in-out;
+    }
+        #createNewLink:hover {
+            color: red;
+            Background-color: white;
+
+
+        }
+</style>
+<p>
+    @Html.ActionLink("Create New", "Create_Student",null, new { id = "createNewLink", @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.UserPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </th>
+        
+        @*<th>
+            @Html.DisplayNameFor(model => model.Major.MajorName)
+        </th>*@
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserEmail)
+        </td>
+           <td>
+            @Html.DisplayFor(modelItem => item.UserPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfBirth)
+        </td>
+        
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Major.MajorName)
+        </td>*@
+    <td>
+        @Html.ActionLink("Edit", "Update_Student", new { id = item.StudentID }) |
+        @*@Html.ActionLink("Details", "Details", new { id=item.StudentID }) |*@
+
+        @using (Html.BeginForm("Delete_Student", "Admin", new { id = item.StudentID }, FormMethod.Post))
+        {
+            @*@Html.ActionLink("Delete", "Delete_Student", new { id = item.StudentID })*@
+            <button type="submit" class="reject">Delete</button>
+        }
+    </td>
+    </tr>
+}
+
+</table>

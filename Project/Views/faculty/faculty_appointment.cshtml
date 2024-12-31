@@ -1,0 +1,236 @@
+﻿@model IEnumerable<Project.Models.app>
+@{
+    ViewBag.Title = "faculty_appointment";
+    Layout = "~/Views/Shared/faculty_layout.cshtml";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .assignment-mark {
+            width: 80vw;
+            height: 93vh;
+            overflow-y: scroll;
+            background-color: rgb(255, 255, 240);
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+            border-bottom-left-radius: 40px;
+            border: 3px solid green;
+        }
+
+            .assignment-mark .assignment-mark-1 .nav-of-page {
+                margin-top: 30px;
+                background-color: transparent;
+                width: 70%;
+                height: 6%;
+                margin-left: 7.5%;
+                display: flex;
+                justify-content: space-between;
+                padding-left: 50px;
+                padding-right: 100px;
+                align-items: center;
+                color: green;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                border: 3px solid green;
+            }
+
+
+                .assignment-mark .assignment-mark-1 .nav-of-page .more-div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-right: 10%;
+                }
+
+            /* / */
+
+            .assignment-mark .assignment-mark-2 {
+                margin-left: 4.5%;
+                margin-top: 2%;
+                width: 91.5%;
+                height: 82%;
+                /* background-color: red; */
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                border: 3px solid green;
+                overflow-y: scroll;
+            }
+        .table {
+            background-color: transparent;
+            width: 100%;
+        }
+
+        table td {
+            text-align: center;
+            height: 20px;
+            font-size: 18px;
+        }
+
+            table td button {
+                padding: 10px;
+                background-color: red;
+                border: none;
+                color:white;
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 40px;
+                /*border: 3px solid green;*/
+                transition: 0.3s ease-in-out;
+            }
+
+                table td button:hover {
+                    background-color: green;
+                }
+
+                table td button a {
+                    text-decoration: none;
+                    color: white;
+                }
+
+        #delete {
+            background-color: green;
+            transition: 0.3s ease-in-out;
+            color: white;
+        }
+
+            #delete:hover {
+                background-color: red;
+            }
+        .accept{
+            background-color:green;
+            transition:0.3s ease-in-out;
+             
+        }
+        .accept:hover{
+            background-color:red;
+        }
+    </style>
+    <div class="assignment-mark">
+        <div class="assignment-mark-1">
+            <div class="nav-of-page">
+                <div class="more-div">
+                    <h1>Appointments:</h1>
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="assignment-mark-2" id="#assignment-mark-2">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AppointmentID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StudentID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AppointmentDescription)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AppointmentDatetime)
+                    </th>
+                    <th>Accept</th>
+                    <th>Reject</th>
+                    @*<th>
+            @Html.DisplayNameFor(model => model.AssignmentType)
+        </th>*@
+
+                    @*<th>
+            Actions
+        </th>*@
+                </tr>
+                <script>
+        function deleteAssignment(id) {
+            if (confirm("Are you sure you want to delete this assignment?")) {
+                $.ajax({
+                    url: '@Url.Action("Delete","faculty")',
+                    type: 'POST',
+                    dataType: "json",
+
+                    data: { id: id },
+                    headers: {
+                        'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            alert("Assignment deleted successfully.");
+                            // Remove the deleted assignment row from the table
+                            $('#assignment-' + id).remove();
+                        } else {
+                            alert(response.message || "An error occurred while deleting the assignment.");
+                        }
+                    },
+                    error: function () {
+                        alert("An error occurred while deleting the assignment.");
+                    }
+                });
+            }
+        }
+                </script>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.AppointmentID)</td>
+                        <td>@Html.DisplayFor(modelItem => item.StudentID)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AppointmentDescription)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AppointmentDatetime)</td>
+                        <td>
+                            @using (Html.BeginForm("UpdateStatus", "faculty", new { id = item.AppointmentID, status = "accepted" }, FormMethod.Post))
+                            {
+                                <button type="submit" class="accept">Accept</button>
+                            }
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("UpdateStatus", "faculty", new { id = item.AppointmentID, status = "rejected" }, FormMethod.Post))
+                            {
+                                <button type="submit" class="reject">Reject</button>
+                            }
+                        </td>
+                    </tr>                    
+    @*<td>@Html.DisplayFor(modelItem => item.DueDate)</td>
+                        <td>@Html.DisplayFor(modelI*
+                        @tem => item.MaxPoints)</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.AssignmentType)</td>*@
+                        @*<td>
+                            <button><a href="@Html.DisplayNameFor(model => model.AssignmentType)" download>Download </a></button>
+                        </td>*@
+                        @*<td>
+
+                    <button id="delete"
+                            onclick="deleteAssignment(modelItem=>
+                            @item.AssignmentID
+                            )">
+                        <p>Delete</p>*@
+                        @*@Html.ActionLink("Delete", "Delete", new { id = item.AssignmentID })*@
+                    //        <!--</button>
+                    //</td>-->
+
+                }
+            </table>
+        </div>
+    </div>
+</body>
+</html>
